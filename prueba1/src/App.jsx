@@ -1,3 +1,6 @@
+// llama a una API y solo muestra el nombre y la imagen
+
+
 import { useEffect, useState } from 'react'
 import './App.css'
 import axios from 'axios';
@@ -5,7 +8,6 @@ import axios from 'axios';
 
 function App() {
   const [characters, setCharacters] = useState([]);
-  const [load, setLoad] = useState(true);
 
   useEffect(()  => {
   async function getCharacter(){
@@ -13,7 +15,6 @@ function App() {
       const response = await axios.get('https://rickandmortyapi.com/api/character');
       const charactersData = response.data.results.map(character => ({...character}));
       setCharacters(charactersData);
-      setLoad(false);
     } catch(error) {
       console.log(error);
     }
@@ -21,10 +22,6 @@ function App() {
   }
   getCharacter();
   }, []);
-
-  if(load){
-    return <p>...Loading</p>
-  }
 
   return (
     <section className='flex  min-w-360 max-w-1440 flex-wrap justify-center align-center'>
