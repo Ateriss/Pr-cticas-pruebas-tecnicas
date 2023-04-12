@@ -1,35 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useEffect, useState } from 'react'
 import './App.css'
+import axios from 'axios';
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [characters, setCharacters] = useState([]);
+  const [load, setLoad] = useState(true);
+
+  useEffect(()  => {
+  async function getCharacter(){
+    try{
+      const response = await axios.get('https://rickandmortyapi.com/api/character');
+      const charactersData = response.data.results.map(character => ({...character}));
+      setCharacters(charactersData);
+      setLoad(false);
+    } catch(error) {
+      console.log(error);
+    }
+
+  }
+  getCharacter();
+  }, []);
+
+  if(load){
+    return <p>...Loading</p>
+  }
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <section className='flex  min-w-360 max-w-1440 flex-wrap justify-center align-center'>
+    { characters.map((character, index) => (
+    <div key={index} className='w-200 h-200 m-2 rounded-md border-2'>
+      <img src={character.image} alt={`imagen de ${character.name}`} className='w-full rounded-md'  />
+      <h1 className="uppercase font-medium mt-15 text-xl p-2 pl-1" >{character.name}</h1>
     </div>
+    ))}
+    </section>
   )
 }
+
+
 
 export default App
