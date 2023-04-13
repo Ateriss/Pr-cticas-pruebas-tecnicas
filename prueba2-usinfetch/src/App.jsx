@@ -41,7 +41,7 @@ export function App() {
 
   return (
     <main className='min-w-360 max-w-1440 flex flex-col justify-center items-center m-3'>
-      <h1 className='uppercase font-bold text-pink '>App de gatitos</h1>
+      <h1 className='uppercase font-bold text-pink '>Fun facts about cats</h1>
       <div className='min-w-350  max-w-500 h-4/5 bg-transparent p-4 rounded-md shadow-xl flex'>
        {facts && <p className='w-full  p-2'>{facts}</p>}
        {imgUrl && <img src={`${preUrl}${imgUrl}`} alt={`image extracted using the first word for ${facts}`} className='w-full rounded-md object-cover'/>}
