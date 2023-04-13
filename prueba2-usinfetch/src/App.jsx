@@ -4,17 +4,12 @@
 //    -endpoint para imagen: `https://cataas.com/cat/says/${firstWord}?size=50&color=red&json=true`
 
 import { useEffect, useState } from 'react';
-
-
 const EndpointRandomFact = 'https://catfact.ninja/fact'
 //const EndpointImgUrl = `https://cataas.com/cat/says/${firstWord}?size=50&color=red&json=true`
 const preUrl = 'https://cataas.com'
-
 export function App() {
   const [facts, setFacts] = useState();
   const [imgUrl, setIgmUrl] = useState();
-
-  
   useEffect(() => {
 // CON FETCH 
     fetch(EndpointRandomFact)
@@ -35,10 +30,7 @@ export function App() {
 
         
     })
-
-
 }, [])
-
   return (
     <main className='min-w-360 max-w-1440 flex flex-col justify-center items-center m-3'>
       <h1 className='uppercase font-bold text-pink '>Fun facts about cats</h1>
