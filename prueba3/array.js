@@ -18,8 +18,9 @@ for(let i = 0; i<=impersiones; i++){
 console.log('ver si una variables es igual a un elemnto de un array')
 
 const colors = ["amarillo", "azul", "verde", "blanco"];
-let colorUser = "blanco";
-console.log(colors.includes(colorUser));
+let colorUser = "negro";
+let colorPrueba = colorUser.toLocaleLowerCase();
+colors.includes(colorPrueba)? console.log(`el color ${colorUser} SI existe en el array`): console.log(`el color ${colorUser} NO existe en el array`)
 
 
 console.log('solicitar una palabra y mostrar el numero de consonates y numeros de vocales')
